@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Poppins, Open_Sans } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import FloatingCTA from '@/components/floating-cta';
+// import FloatingCTA from '@/components/floating-cta';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -37,7 +37,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <FloatingCTA />
+          {/* <FloatingCTA /> */}
           <Toaster />
         </ThemeProvider>
       </body>
