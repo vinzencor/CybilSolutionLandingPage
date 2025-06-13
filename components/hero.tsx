@@ -109,7 +109,7 @@ export default function Hero() {
   <div className="flex flex-col xl:flex-row gap-8 lg:gap-12 items-start max-w-7xl mx-auto">
     {/* Hero Text - Responsive */}
     <div className="w-full xl:w-1/2 max-w-2xl slide-up pt-16 sm:pt-20 lg:pt-24">
-      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 leading-tight">
+      <h1 className="text-2xl sm:text-3xl pt-9 md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 leading-tight">
         {heroContent.title}
       </h1>
       <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-200 leading-relaxed">
@@ -137,7 +137,7 @@ export default function Hero() {
   <div className="mt-8 flex justify-center">
     <Button
       onClick={() => setShowPopup(true)}
-      className="bg-[#f2b84b] hover:bg-[#e6a835] text-black font-semibold px-8 py-3 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+      className="bg-[#f2b84b] hover:bg-[#e6a835] text-black mb-8 font-semibold px-8 py-3 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
     >
       Book a Free Consultation
     </Button>

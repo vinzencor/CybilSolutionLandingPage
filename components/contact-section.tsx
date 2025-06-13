@@ -54,7 +54,7 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-gray-200 text-center">
+        <div className="mt-6 pt-2 pb-5 border-t border-gray-200 text-center">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Copyright © Cybil Solutions | Designed by Emilda Solutions
           </p>
