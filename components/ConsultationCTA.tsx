@@ -14,7 +14,7 @@ export default function ConsultationCTA() {
 
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <Button className="px-8 py-4 text-lg font-medium bg-[#f2b84b] hover:bg-[#f4d48c]">Book My Free Consultation</Button>
+                    <Button className="px-8 py-6 text-lg font-medium bg-[#f2b84b] hover:bg-[#f4d48c]">Book My Free Consultation</Button>
                 </DialogTrigger>
 
                 <DialogContent className="max-w-3xl w-full">

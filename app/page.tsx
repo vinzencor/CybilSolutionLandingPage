@@ -39,35 +39,36 @@ export default function Home() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showModal]);
+
   return (
     <main className="min-h-screen">
       <Hero />
       <WhyUAE />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <ConsultationCTA />
       <section id="contact-section">
         <ContactSection />
       </section>
 
-
-      {/* Modal Overlay */}
+      {/* Modal Overlay - Responsive */}
       {showModal && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-4">
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
           <div
             ref={modalRef}
-            className="bg-white p-6 rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto relative"
+            className="bg-white p-4 sm:p-6 lg:p-8 rounded-xl max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl w-full max-h-[90vh] overflow-y-auto relative"
           >
             {/* Close Button */}
             <button
-              className="absolute top-3 right-3 text-gray-500 hover:text-black text-2xl"
+              className="absolute top-2 sm:top-3 right-2 sm:right-3 text-gray-500 hover:text-black text-xl sm:text-2xl z-10 bg-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center shadow-md transition-colors duration-200"
               onClick={() => setShowModal(false)}
             >
               &times;
             </button>
-            <ContactForm />
+            <div className="pt-8 sm:pt-6">
+              <ContactForm />
+            </div>
           </div>
         </div>
-
       )}
     </main>
   );

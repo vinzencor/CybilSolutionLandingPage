@@ -1,5 +1,7 @@
 import { contactInfo } from '@/lib/constants';
-import { Phone, Mail} from 'lucide-react';
+import { Phone, Mail } from 'lucide-react';
+import { BsWhatsapp } from "react-icons/bs";
+
 
 export default function ContactSection() {
   return (
@@ -13,17 +15,26 @@ export default function ContactSection() {
               Our team of experts is here to help you every step of the way.
             </p>
 
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <Phone className="h-5 w-5 text-secondary mr-3" />
-                <span>{contactInfo.phone}</span>
-              </div>
-              <div className="flex items-center">
-                <Mail className="h-5 w-5 text-secondary mr-3" />
-                <span>{contactInfo.email}</span>
-              </div>
+            <div className="flex space-x-6">
+              {/* WhatsApp Icon */}
+              <a
+                href={`https://wa.me/${contactInfo.phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-black hover:opacity-80 transition"
+              >
+                <BsWhatsapp className="h-8 w-8" />
+              </a>
 
+              {/* Email Icon */}
+              <a
+                href={`mailto:${contactInfo.email}`}
+                className="text-black hover:opacity-80 transition"
+              >
+                <Mail className="h-8 w-8" />
+              </a>
             </div>
+
 
             {/* <div className="mt-8 flex space-x-4">
               <Button className="gold-btn">Call Now</Button>

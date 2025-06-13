@@ -166,6 +166,6 @@ export const testimonials = [
 ];
 
 export const contactInfo = {
-  phone: "+971 557251000",
+  phone: "+971505992467",
   email: "info@cybilsolutions.com",
 };
