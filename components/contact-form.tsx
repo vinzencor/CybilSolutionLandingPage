@@ -86,12 +86,18 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
 
     const form = e.target as HTMLFormElement;
 
-    const cleanData = {
-      firstName: form.firstName.value.trim(),
-      email: form.email.value.trim(),
-      phone: `${countryCode} ${form.phone.value.trim()}`,
-      description: form.description.value.trim(), 
-    };
+    try {
+      form.submit(); // Let Netlify handle it
+    } catch (error: any) {
+      toast({
+        title: "Error submitting form!",
+        description: error.message || "Something went wrong.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
     const phone = `'${cleanData.phone}`;  
 
@@ -156,6 +162,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
               <form 
   name="contact" 
   method="POST" 
+  action="/" 
   data-netlify="true" 
   netlify-honeypot="bot-field"
   onSubmit={handleSubmit} 
@@ -169,7 +176,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                     Name *
                   </label>
                   <Input
-                    id="firstName"
+                    id="firstName" name="firstName"
                     placeholder="Enter your full name"
                     required
                     className="text-sm h-9"
@@ -183,7 +190,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                       Email Address *
                     </label>
                     <Input
-                      id="email"
+                      id="email" name="email"
                       type="email"
                       placeholder="Enter your email"
                       required
@@ -209,7 +216,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                         </SelectContent>
                       </Select>
                       <Input
-                        id="phone"
+                        id="phone" name="phone"
                         placeholder="Enter phone number"
                         required
                         className="w-3/4 text-sm h-9"
@@ -224,7 +231,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                     Description (optional)
                   </label>
                   <textarea
-                    id="description"
+                    id="description" name="description"
                     placeholder="Additional details or questions"
                     className="w-full h-16 p-2 text-sm border border-gray-300 rounded-md resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   ></textarea>
