@@ -153,7 +153,16 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             </p>
 
             <div className="bg-white p-3 sm:p-4 rounded-xl shadow-md">
-              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+              <form 
+  name="contact" 
+  method="POST" 
+  data-netlify="true" 
+  netlify-honeypot="bot-field"
+  onSubmit={handleSubmit} 
+  className="space-y-3 sm:space-y-4"
+>
+  <input type="hidden" name="form-name" value="contact" />
+  <input type="hidden" name="bot-field" />
                 {/* Name Field */}
                 <div className="space-y-1">
                   <label htmlFor="firstName" className="text-xs font-medium">
