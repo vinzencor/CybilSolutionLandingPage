@@ -106,14 +106,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       description: form.description.value.trim(),
     };
 
-    const phone = `'${cleanData.phone}`;  
-
-    const data = {
-      firstName: cleanData.firstName,
-      email: cleanData.email,
-      phone: phone,
-      description: cleanData.description,
-    };
+    // Remove unused/undefined cleanData and redundant data redefinition
 
 
     try {
