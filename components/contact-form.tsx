@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from 'emailjs-com';
+
 
 type ContactFormProps = {
   onSuccess?: () => void;
@@ -90,10 +92,10 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       firstName: form.firstName.value.trim(),
       email: form.email.value.trim(),
       phone: `${countryCode} ${form.phone.value.trim()}`,
-      description: form.description.value.trim(), 
+      description: form.description.value.trim(),
     };
 
-    const phone = `'${cleanData.phone}`;  
+    const phone = `'${cleanData.phone}`;
 
     const data = {
       firstName: cleanData.firstName,
@@ -102,8 +104,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       description: cleanData.description,
     };
 
-
     try {
+      // 1. Send to SheetDB
       const res = await fetch("https://sheetdb.io/api/v1/xs57v33d00wiy", {
         method: "POST",
         headers: {
@@ -113,6 +115,22 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       });
 
       const result = await res.json();
+
+      // 2. Send email via EmailJS
+      await emailjs.send(
+        "service_t424pik",
+        "template_v85q1el",
+        {
+          name: data.firstName,
+          email: data.email,
+          phone: data.phone,
+          description: data.description || "No message provided.",
+          // time: timestamp,
+        },
+        "vChBI5OUnvgoiWuaM"
+      );
+
+
       if (res.ok && result?.created) {
         toast({
           title: "Form submitted successfully!",
@@ -122,7 +140,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
         setFormSubmitted(true);
         if (onSuccess) onSuccess();
       } else {
-        throw new Error("Something went wrong");
+        throw new Error("Something went wrong while saving data.");
       }
     } catch (error: any) {
       toast({
@@ -134,6 +152,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       setIsSubmitting(false);
     }
   };
+
 
   return (
     <section id="contact" className="py-4 sm:py-6 bg-gray-50 flex items-center justify-center">

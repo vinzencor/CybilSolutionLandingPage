@@ -7,6 +7,13 @@ import ContactSection from '@/components/contact-section';
 import { useEffect, useRef, useState } from 'react';
 import ConsultationCTA from '@/components/ConsultationCTA';
 
+// Add this to extend the Window interface for dataLayer
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null);
@@ -17,6 +24,28 @@ export default function Home() {
     }, 1000);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Google Tag code
+    const script = document.createElement('script');
+    script.src = "https://www.googletagmanager.com/gtag/js?id=AW-10924580739";
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+      }
+      gtag('js', new Date());
+      gtag('config', 'AW-10924580739');
+    };
+
+    return () => {
+      // Cleanup: remove the script tag when the component unmounts
+      document.head.removeChild(script);
+    };
   }, []);
 
   useEffect(() => {
